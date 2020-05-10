@@ -1,6 +1,3 @@
----
-typora-root-url: readme_img
----
 
 ## 高校维修系统
 
@@ -34,7 +31,7 @@ typora-root-url: readme_img
 
 - 维修人员
 
-  ![weixiu](readme_img/weixiu.png)
+  ![weixiu](https://github.com/yashuangyi/UniversityLogisticsMaintenanceSystem/tree/master/readme_img/weixiu.png)
 
 ---
 
