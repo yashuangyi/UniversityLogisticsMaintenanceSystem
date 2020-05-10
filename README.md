@@ -20,21 +20,21 @@ typora-root-url: readme_img
 
 - 登录界面
 
-  ![login](/login.png)
+  ![login](readme_img\login.png)
 
 - 管理员
 
-  ![admin](/admin.png)
+  ![admin](readme_img\admin.png)
 
-  ![admin2](/admin2.png)
+  ![admin2](readme_img\admin2.png)
 
 - 用户
 
-  ![user](/user.png)
+  ![user](readme_img\user.png)
 
 - 维修人员
 
-  ![weixiu](/weixiu.png)
+  ![weixiu](readme_img\weixiu.png)
 
 ---
 
