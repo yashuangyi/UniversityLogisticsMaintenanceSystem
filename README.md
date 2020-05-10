@@ -31,7 +31,7 @@
 
 - 维修人员
 
-  ![weixiu](https://github.com/yashuangyi/UniversityLogisticsMaintenanceSystem/tree/master/readme_img/weixiu.png)
+  ![weixiu](readme_img/weixiu.png)
 
 ---
 
