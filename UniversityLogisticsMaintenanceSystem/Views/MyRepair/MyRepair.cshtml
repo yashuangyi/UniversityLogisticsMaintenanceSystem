@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>故障登记</title>
+    <script src="../../Scripts/jquery-3.4.1.js"></script>
+    <script src="../../Source/packages/layui/layui.js"></script>
+    <script src="../../Scripts/Project/MyRepair/myRepair.js"></script>
+    <link rel="stylesheet" href="../../Source/packages/layui/css/layui.css">
+</head>
+<body>
+    <blockquote class="layui-elem-quote layui-quote-nm">
+        <button class="layui-btn" onclick="btn_addRepair()">故障登记</button>
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">模糊查询</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="input" id="input" lay-verify="required" style="width:400px;" placeholder="支持模糊查询故障内容、时间" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <button type="button" class="layui-btn layui-btn-normal" id="search">
+                    <i class="layui-icon">&#xe615;</i>
+                </button>
+            </div>
+        </form>
+    </blockquote>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+        <legend>我的报修记录&gt;&gt;My Repair</legend>
+    </fieldset>
+    <blockquote class="layui-elem-quote layui-quote-nm">
+        <!--我的报修的表格-->
+        <table id="table_myRepair" lay-filter="table_myRepair"></table>
+    </blockquote>
+    <!--新增报修的弹窗-->
+    <div style="padding-left:20px;padding-right:20px;padding-top:20px" id="div_addRepair" hidden>
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color:red">*</span>故障内容</label>
+                <div class="layui-input-block">
+                    <input type="text" name="damagedName" id="damagedName" lay-verify="required" placeholder="请输入故障内容" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color:red">*</span>报修地址</label>
+                <div class="layui-input-block">
+                    <input type="text" name="address" id="address" lay-verify="required" placeholder="请输入报修地址" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color:red">*</span>联系方式</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="contact" id="contact" lay-verify="required" placeholder="请输入联系方式" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color:red">*</span>预约时间</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="reserveTime" id="reserveTime" lay-verify="required" placeholder="点击选择预约上门时间" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-block">
+                    <textarea name="remark" id="remark" placeholder="备注（可选）" autocomplete="off" class="layui-textarea"></textarea>
+                </div>
+            </div>
+
+            <!--以下属性不显示，便于更新-->
+            <div class="layui-form-item" hidden>
+                <textarea id="status" name="status"></textarea>
+                <textarea id="repairId" name="id"></textarea>
+                <textarea id="repair_userId" name="userId"></textarea>
+                <textarea id="maintainerId" name="maintainerId"></textarea>
+                <textarea id="createTime" name="createTime"></textarea>
+            </div>
+        </form>
+    </div>
+
+    <!--layui模版引擎文档(laytpl)-->
+    <!--修改表格的工具列-->
+    <script type="text/html" id="toolbar">
+        {{# if(d.Status === '待分配'){}}
+        <a class="operation" lay-event="edit" title="修改本次报修">
+            <i class="layui-icon layui-icon-edit"></i>修改
+        </a>
+        <a class="operation" style="margin-left:10px;" lay-event="del" title="撤销本次报修">
+            <i class="layui-icon layui-icon-delete"></i>撤销
+        </a>
+        {{#  } }}
+        {{# if(d.Status === '进行中'){}}
+        <a class="operation" style="margin-left:10px;" lay-event="del" title="撤销本次报修">
+            <i class="layui-icon layui-icon-delete"></i>撤销
+        </a>
+        {{# } }}
+        {{# if(d.Status === '已完成'){}}
+        <a class="operation" style="margin-left:10px;" lay-event="appraise" title="评价本次报修">
+            <i class="layui-icon layui-icon-praise"></i>评价
+        </a>
+        {{# } }}
+    </script>
+    <!--修改表格的状态列-->
+    <script type="text/html" id="statusbar">
+        {{# if(d.Status === '待分配'){ }}
+        <span style="color:#FFC125;">待分配</span>
+        {{#  } }}
+        {{# if(d.Status === '进行中'){ }}
+        <span style="color:#00CD00;">进行中</span>
+        {{#  } }}
+        {{# if(d.Status === '已完成'){ }}
+        <span style="color: #FF0000">已完成</span>
+        {{#  } }}
+        {{# if(d.Status === '已撤销'){ }}
+        <span style="color:#55ffff;">已撤销</span>
+        {{#  } }}
+    </script>
+</body>
+</html>
